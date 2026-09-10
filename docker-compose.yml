@@ -1,0 +1,63 @@
+version: '3.9'
+
+services:
+  backend:
+    build: ./backend
+    container_name: cs2_backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://cs2user:cs2pass@db:5432/cs2store
+      - REDIS_URL=redis://redis:6379
+      - SECRET_KEY=supersecretkey123cambiaesto
+      - STEAM_API_KEY=TU_STEAM_API_KEY
+      - MP_ACCESS_TOKEN=TU_MERCADOPAGO_TOKEN
+    depends_on:
+      - db
+      - redis
+
+  frontend:
+    build: ./frontend
+    container_name: cs2_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:16
+    container_name: cs2_db
+    restart: always
+    environment:
+      POSTGRES_USER: cs2user
+      POSTGRES_PASSWORD: cs2pass
+      POSTGRES_DB: cs2store
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    container_name: cs2_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  nginx:
+    image: nginx:alpine
+    container_name: cs2_nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+      - frontend
+
+volumes:
+  postgres_data:

@@ -1,0 +1,42 @@
+# ─── Secretos / variables de entorno — NUNCA subir ───
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# ─── Node / Next.js ───
+node_modules/
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ─── Python / FastAPI ───
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ─── Media subida / generada ───
+backend/uploads/
+backend/media/
+
+# ─── Logs ───
+*.log
+.codex-*.log
+
+# ─── OS / editores ───
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
