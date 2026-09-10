@@ -3,6 +3,8 @@
 Tienda web full-stack de skins de **Counter-Strike 2**, con catálogo, carrito y pagos
 integrados. Arquitectura separada en frontend, backend y proxy, lista para correr con Docker.
 
+> ⚠️ **Proyecto discontinuado e incompleto.** No se sigue desarrollando; quedó como trabajo en progreso / material de referencia.
+
 ## 🧱 Stack
 
 | Capa | Tecnologías |
